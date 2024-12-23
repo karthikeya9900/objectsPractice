@@ -230,30 +230,45 @@ const personsDetails = [rahul, ananya, ramesh, kavya];
 
 // 11. Which pets are associated with specific favorite activities?
 
-const petsDetails = personsDetails.flatMap((record) => record.pets);
+// const petsDetails = personsDetails.flatMap((record) => record.pets);
 
-const petsHavingSpecificActivities = petsDetails.filter((record) => record.petLikes.some((like => like === "Loves to play fetch in the park")));
+// const petsHavingSpecificActivities = petsDetails.filter((record) => record.petLikes.some((like => like === "Loves to play fetch in the park")));
 
-console.log(petsHavingSpecificActivities.map((record) => record.petName).join(""));
+// console.log(petsHavingSpecificActivities.map((record) => record.petName).join(""));
 
 // ------------------------- 12 ------------------------------------------
 
 // 12. What are the names of all animals that belong to people who live in Bangalore or Chennai?
 
+// console.log(personsDetails.filter((record) => record.personal.nativePlace === "Chennai" || record.personal.nativePlace === "Bangalore").flatMap((record) => record.pets).map((record) => record.petName));
+
+// ------------------------- 13 ------------------------------------------
+
+// 13. How many vaccinated pets belong to people who do not own a car?
+
+// console.log(personsDetails.filter((record) => record.transport.hasAcar === "No").flatMap((record) => record.pets).map((record) => record.petName).length)
+
+// ------------------------- 14 ------------------------------------------
+
+// const findCommonElement = function (array) {
+//   const copyArray = Array.from(array).sort;
+//   let commonElement = "";
+
+//   copyArray.reduce;
+
+// };
+
+// // 14. What is the most common type of pet among the group?
+
+// const typesOfpets = personsDetails.flatMap((record) => record.pets).map((record) => record.typeOfPet)
 
 
-/*
 
-----> 
-
-
-13. How many vaccinated pets belong to people who do not own a car?
-14. What is the most common type of pet among the group?
+/* 
 15. How many individuals have more than two hobbies?
 16. How many individuals share at least one hobby with Ramesh?
 17. Which pet is the youngest, and what is its name?
 18. What types of books are mentioned as interests, and who reads them?
 19. How many individuals live in cities starting with the letter "B"?
 20. Which individuals do not own any pets?
-
 */
