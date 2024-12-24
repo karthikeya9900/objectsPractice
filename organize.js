@@ -18,142 +18,155 @@
 //  prefers modern fantasy novels and binge-watching sci-fi shows in her downtime. 
 // Kavya has a rescue rabbit named Snowy, who is 2 years old, vaccinated, 
 // and enjoys hopping around her backyard and nibbling on carrots. Kavya, however, is currently unemployed and does not own a vehicle.
-
-
-const rahul = {
-  personal: {
-    fullName: "Rahul",
+const people = [
+  {
+    name: "Rahul",
     age: 35,
-    study: "Computer Science",
+    profession: "Software Engineer",
+    qualification: {
+      major: "Computer Science", minor: "dont now"
+    },
+    otherSkills: "dont know",
     nativePlace: "Pune",
-    passsion: "Nothing",
-    hobbies: ["Playing Chess ", " Gardening"],
-    othertalents: "Nothing"
+    isEmployed: true,
+    hasAOwnVechile: true,
+    modeOfTransport: "car",
+    hobbies: [
+      {
+        title: "playing",
+        specifics: "playing chess"
+      },
+      {
+        title: "gardening",
+        specifics: "nothing particular"
+      }
+    ],
+    vehicles: [
+      {
+        type: "car",
+        brand: "maruthi",
+        model: "suzuki"
+      }
+    ],
+    pets: [
+      {
+        type: "Dog",
+        name: "Max",
+        age: 4,
+        isVaccinated: true,
+        likes: ["Loves to play fetch in the park"],
+        skills: "Nothing"
+      },
+    ],
   },
-  professional: {
-    profession: "Software Engineer",
-    employmentStatus: "Employed"
-  },
-  transport: {
-    hasAOwnVechile: "Yes",
-    hasAcar: "Yes",
-    modeOfCommutation: "Car"
-  },
-  pets: [
-    {
-      typeOfPet: "Dog",
-      petName: "Max",
-      petAge: 4,
-      petVaccinationStatus: "Fully vaccinated",
-      petLikes: ["Loves to play fetch in the park"],
-      petTalents: "Nothing"
-    },
-  ],
-};
-
-const ananya = {
-  personal: {
-    fullName: "Ananya",
+  {
+    name: "Ananya",
     age: 30,
-    study: "Computer Science",
-    nativePlace: "Bangalore",
-    hobbies: ["cooking"],
-    passion: "About cooking and often experiments with Italian recipes.",
-    othertalents: "Interest inlearning graphic designing"
-  },
-  pets: [
-    {
-      typeOfPet: "Parrot",
-      petName: "Kiwi",
-      petAge: 2,
-      petVaccinationStatus: "Fully vaccinated",
-      petLikes: ["Mimics her voice"],
-      petTelents: "Knows over 20 phrases"
-    }
-  ],
-  professional: {
     profession: "Software Engineer",
-    employmentStatus: "Employed"
-  },
-  transport: {
-    hasAOwnVechile: "No",
-    hasAcar: "No",
-    modeOfCommutation: "Public transport"
-  }
-
-};
-
-const ramesh = {
-  personal: {
-    fullName: "Ramesh",
-    age: 45,
-    study: "Dont know",
-    nativePlace: "Jaipur",
-    hobbies: ["Reading historical fiction", "gardening"],
-    passion: "About cooking and often experiments with Italian recipes.",
-    othertalents: "Nothing"
-  },
-  pets: [
-    {
-      typeOfPet: "Cat",
-      petName: "Bella",
-      petAge: 3,
-      petVaccinationStatus: "Fully vaccinated",
-      petLikes: ["Love lounging in the sun"],
-      petTalents: "Nothing"
+    qualification: {
+      major: "Computer Science", minor: "Graphic Design"
     },
-    {
-      typeOfPet: "Cat",
-      petName: "Leo",
-      petAge: 3,
-      petVaccinationStatus: "Fully vaccinated",
-      petLikes: ["Love lounging in the sun"],
-      petTalents: "Nothing"
-    }
-  ],
-  professional: {
+    otherSkills: "Interest inlearning graphic designing",
+    nativePlace: "Bangalore",
+    isEmployed: true,
+    hasAOwnVechile: false,
+    modeOfTransport: "Public transport",
+    hobbies: [
+      {
+        title: "cooking",
+        specifics: "Often experiments with Italian recipes"
+      }
+    ],
+    vehicles: [{}],
+    pets: [
+      {
+        type: "Parrot",
+        name: "Kiwi",
+        age: 2,
+        isVaccinated: true,
+        likes: ["Mimics her voice"],
+        skills: "Knows over 20 phrases"
+      }
+    ],
+  },
+  {
+    name: "Ramesh",
+    age: 45,
     profession: "Business",
-    employmentStatus: "Employed"
+    qualification: {
+      major: "MBA", minor: "dont Know"
+    },
+    otherskills: "dont know",
+    nativePlace: "Jaipur",
+    isEmployed: true,
+    hobbies: [
+      {
+        title: "Reading historical fiction",
+        specifics: "reading fictional books related to  history "
+      },
+      {
+        type: "gardening",
+        specific: "Tending to his rose garden"
+      }
+    ],
+    vehicles: [{}],
+    pets: [
+      {
+        type: "Cat",
+        name: "Bella",
+        age: 3,
+        isVaccinated: true,
+        likes: ["Love lounging in the sun"],
+        skills: "Nothing"
+      },
+      {
+        type: "Cat",
+        name: "Leo",
+        age: 3,
+        isVaccinated: true,
+        likes: ["Love lounging in the sun"],
+        skills: "Nothing"
+      }
+    ],
   },
-  transport: {
-    hasAOwnVechile: "Dont know",
-    hasAcar: "No",
-    modeOfCommutation: "Dont know"
-  }
-};
-
-const kavya = {
-  personal: {
-    fullName: "Kavvya",
+  {
+    name: "Kavvya",
     age: 28,
-    study: "Dont know",
-    nativePlace: "Chennai",
-    hobbies: ["Modern fantasy novels", "binge-watching sci-fi shows"],
-    passion: "Dance",
-    othertalents: "Nothing"
-  },
-  pets: [
-    {
-      typeOfPet: "Rabbit",
-      petName: "Snowy",
-      petAge: 2,
-      petVaccinationStatus: "Fully vaccinated",
-      petLikes: ["Enjoys hopping around her backyard", " nibbling on carrots"],
-      petTalents: "Nothing"
-    }
-  ],
-  professional: {
     profession: "Professional dancer",
-    employmentStatus: "Unemployed"
-  },
-  transport: {
-    hasAOwnVechile: "No",
-    hasAcar: "No",
-    modeOfCommutation: "Dont know"
+    qualification: {
+      major: "B Tech", minor: "dont know"
+    },
+    otherSkills: "no Other Skills",
+    nativePlace: "Chennai",
+    isEmployed: true,
+    hasAOwnVechile: true,
+    modeOfTransport: "dont know",
+    hobbies: [
+      {
+        title: "Modern fantasy novels",
+        specifics: "reading novels mostly on fantacies",
+      },
+      {
+        title: "binge-watching sci-fi shows",
+        specifics: "watching of scientific fictions"
+      }
+    ],
+    vehicles: [{}],
+    pets: [
+      {
+        type: "Rabbit",
+        name: "Snowy",
+        age: 2,
+        vaccinationStatus: "Fully vaccinated",
+        likes: ["Enjoys hopping around her backyard", " nibbling on carrots"],
+        talents: "Nothing"
+      }
+    ],
   }
-};
+];
 
-const personsDetails = [rahul, ananya, ramesh, kavya];
+console.log(people);
+
 
 // **Hypothetical Questions:**
 
@@ -249,20 +262,24 @@ const personsDetails = [rahul, ananya, ramesh, kavya];
 // console.log(personsDetails.filter((record) => record.transport.hasAcar === "No").flatMap((record) => record.pets).map((record) => record.petName).length)
 
 // ------------------------- 14 ------------------------------------------
+// const makePairs = function (pairs, element) {
+//   console.log(pairs, element);
+//   console.log(pairs.at(-1));
 
-// const findCommonElement = function (array) {
-//   const copyArray = Array.from(array).sort;
-//   let commonElement = "";
+//   const lastAnimalType = pairs.at(-1);
+//   if (lastAnimalType.some((type) => type !== "cat")) {
+//     pairs.push([]);
+//   }
 
-//   copyArray.reduce;
-
+//   pairs[pairs.length - 1].push(element);
+//   return pairs;
 // };
 
-// // 14. What is the most common type of pet among the group?
+// .some((value) => value === element)
 
-// const typesOfpets = personsDetails.flatMap((record) => record.pets).map((record) => record.typeOfPet)
+// 14. What is the most common type of pet among the group?
 
-
+// console.log(personsDetails.flatMap((record) => record.pets).map((record) => record.typeOfPet).sort().reduce(makePairs, []))
 
 /* 
 15. How many individuals have more than two hobbies?
