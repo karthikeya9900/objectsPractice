@@ -18,36 +18,28 @@
 //  prefers modern fantasy novels and binge-watching sci-fi shows in her downtime. 
 // Kavya has a rescue rabbit named Snowy, who is 2 years old, vaccinated, 
 // and enjoys hopping around her backyard and nibbling on carrots. Kavya, however, is currently unemployed and does not own a vehicle.
+
 const people = [
   {
     name: "Rahul",
     age: 35,
     profession: "Software Engineer",
-    qualification: {
-      major: "Computer Science", minor: "dont now"
-    },
-    otherSkills: "dont know",
+    qualification: "Computer Science",
+    skills: [],
     nativePlace: "Pune",
     isEmployed: true,
-    hasAOwnVechile: true,
     modeOfTransport: "car",
     hobbies: [
       {
         title: "playing",
-        specifics: "playing chess"
+        description: "playing chess"
       },
       {
         title: "gardening",
-        specifics: "nothing particular"
+        description: "not available particular"
       }
     ],
-    vehicles: [
-      {
-        type: "car",
-        brand: "maruthi",
-        model: "suzuki"
-      }
-    ],
+    vehicles: ["car"],
     pets: [
       {
         type: "Dog",
@@ -55,7 +47,7 @@ const people = [
         age: 4,
         isVaccinated: true,
         likes: ["Loves to play fetch in the park"],
-        skills: "Nothing"
+        skills: "not available"
       },
     ],
   },
@@ -63,21 +55,18 @@ const people = [
     name: "Ananya",
     age: 30,
     profession: "Software Engineer",
-    qualification: {
-      major: "Computer Science", minor: "Graphic Design"
-    },
-    otherSkills: "Interest inlearning graphic designing",
+    qualification: "Computer Science",
+    skills: ["Graphic Design"],
     nativePlace: "Bangalore",
     isEmployed: true,
-    hasAOwnVechile: false,
     modeOfTransport: "Public transport",
     hobbies: [
       {
         title: "cooking",
-        specifics: "Often experiments with Italian recipes"
+        description: "Often experiments with Italian recipes"
       }
     ],
-    vehicles: [{}],
+    vehicles: [],
     pets: [
       {
         type: "Parrot",
@@ -93,23 +82,21 @@ const people = [
     name: "Ramesh",
     age: 45,
     profession: "Business",
-    qualification: {
-      major: "MBA", minor: "dont Know"
-    },
-    otherskills: "dont know",
+    qualification: "MBA",
+    skills: [],
     nativePlace: "Jaipur",
     isEmployed: true,
     hobbies: [
       {
-        title: "Reading historical fiction",
-        specifics: "reading fictional books related to  history "
+        title: "Reading books",
+        description: "Reading fictional books related to  history "
       },
       {
-        type: "gardening",
-        specific: "Tending to his rose garden"
+        title: "gardening",
+        description: "Tending to his rose garden"
       }
     ],
-    vehicles: [{}],
+    vehicles: [],
     pets: [
       {
         type: "Cat",
@@ -117,7 +104,7 @@ const people = [
         age: 3,
         isVaccinated: true,
         likes: ["Love lounging in the sun"],
-        skills: "Nothing"
+        skills: "not available"
       },
       {
         type: "Cat",
@@ -125,165 +112,158 @@ const people = [
         age: 3,
         isVaccinated: true,
         likes: ["Love lounging in the sun"],
-        skills: "Nothing"
+        skills: "not available"
       }
     ],
   },
   {
-    name: "Kavvya",
+    name: "Kavya",
     age: 28,
     profession: "Professional dancer",
-    qualification: {
-      major: "B Tech", minor: "dont know"
-    },
-    otherSkills: "no Other Skills",
+    qualification: "B Tech",
+    skills: [],
     nativePlace: "Chennai",
-    isEmployed: true,
-    hasAOwnVechile: true,
-    modeOfTransport: "dont know",
+    isEmployed: false,
+    modeOfTransport: "not available",
     hobbies: [
       {
-        title: "Modern fantasy novels",
-        specifics: "reading novels mostly on fantacies",
+        title: "Reading books",
+        description: "reading novels mostly on fantacies",
       },
       {
-        title: "binge-watching sci-fi shows",
-        specifics: "watching of scientific fictions"
+        title: "binge-watching",
+        description: "watching scientific fictions shows or movies"
       }
     ],
-    vehicles: [{}],
+    vehicles: [],
     pets: [
       {
         type: "Rabbit",
         name: "Snowy",
         age: 2,
-        vaccinationStatus: "Fully vaccinated",
+        isVaccinated: true,
         likes: ["Enjoys hopping around her backyard", " nibbling on carrots"],
-        talents: "Nothing"
+        skills: "not available"
       }
     ],
   }
 ];
 
-console.log(people);
-
 
 // **Hypothetical Questions:**
 
-// -------------------------- 1 ------------------------------
+// -------------------------- 1 question ------------------------------
 
 // 1. How many individuals are currently employed?  ----> 3 persons
 
-// console.log(personsDetails.filter((record) => record.professional.employmentStatus === "Employed").length);
+console.log(people.filter((person) => person.isEmployed).length, "Q1");
 
-// -------------------------- 2 ------------------------------
+// -------------------------- 2 question ------------------------------
 
 // 2. How many people own a car?    ----> 1 person
 
-// console.log(personsDetails.filter((record) => record.transport.hasAcar === "Yes").length);
+console.log(people.flatMap((person) => person.vehicles).filter((record) => record.type === "car").length, "Q2");
 
-// -------------------------- 3 ------------------------------
+// -------------------------- 3 question ------------------------------
 
 // 3. How many pets are fully vaccinated?    ----> 5 pets
-// const petsDetails = personsDetails.flatMap((record) => record.pets);
-// console.log(petsDetails.filter((record) => record.petVaccinationStatus === "Fully vaccinated").length);
+const petsDetails = people.flatMap((record) => record.pets);
+console.log(petsDetails.filter((record) => record.isVaccinated === true).length, "Q3");
 
-// ------------------------- 4 ------------------------------------------
+// ------------------------- 4 question ------------------------------------
 
 // 4. What are the names of all the pets, and what type of animal is each?  ----> Max is a dog, Kiwi is a parrot , Bella And Leo are Cats, Snowy is a Rabbit
 
-// const petsDetails = personsDetails.flatMap((record) => record.pets);
-// console.log(petsDetails.map((record) => record.petName + " is " +
-//   record.typeOfPet));
+console.log(petsDetails.map((record) => record.name + " is " +
+  record.type), "Q4");
 
-// ------------------------- 5 ------------------------------------------
+// ------------------------- 5 question ----------------------------------
 
-// 5. Which cities do the individuals live in?   ---->  Bangalore
+// 5. Which cities do the individuals live in?   ---->
 
-// console.log(personsDetails.map((record) => record.personal.nativePlace));
+console.log(people.map((record) => record.nativePlace), "Q5");
 
-// ------------------------- 6 ------------------------------------------
+// ------------------------- 6 question --------------------------------
 
 // 6. How many hobbies are shared across the group? What are they?   
-// ---->
+// ---->   
 
-// console.log(personsDetails.flatMap((record) => record.personal.hobbies));
+console.log(people.flatMap((record) => record.hobbies).length, "Q6");
 
-// ------------------------- 7 ------------------------------------------
+// ------------------------- 7 question -----------------------------------
 
 // 7. How many pets belong to people who are currently unemployed?  
 // ----> only one pet
+console.log(people.filter((record) => !record.isEmployed).flatMap((record) => record.pets).length, "Q7");
 
-// const unemPloyedPeople = personsDetails.filter((record) => record.professional.employmentStatus === "Unemployed");
-// console.log(unemPloyedPeople.flatMap((record) => record.pets).length);
-
-// ------------------------- 8 ------------------------------------------
+// ------------------------- 8 question -------------------------------
 
 // 8. What is the average age of the individuals mentioned in the passage?
 // ----> 35 
 
-// console.log(personsDetails.reduce((sum, record) => (record.personal.age + sum), 0) / personsDetails.length)
+console.log(people.reduce((sum, record) => (record.age + sum), 0) / people.length, "Q8");
 
-// ------------------------- 9 ------------------------------------------
+// ------------------------- 9 question ---------------------------------
 
 // 9. How many individuals have studied computer science, and how many of them have pets?
 
-// const personsStudiedCS = personsDetails.filter((record) =>
-//   record.personal.study === "Computer Science");
+console.log(people.filter((record) => record.qualification === "Computer Science").filter((record) => record.pets.length !== 0).length, "Q9");
 
-// console.log(personsStudiedCS.filter((record) => record.pets.length !== 0).length);
-
-// ------------------------- 10 ------------------------------------------
+// ------------------------- 10 question --------------------------------
 
 // 10. How many individuals own more than one pet?
 
-// console.log(personsDetails.filter((record) => record.pets.length > 1).length);
+console.log(people.filter((record) => record.pets.length > 1).length, "Q10");
 
-// ------------------------- 11 ------------------------------------------
+// ------------------------- 11 question -------------------------------
 
 // 11. Which pets are associated with specific favorite activities?
 
-// const petsDetails = personsDetails.flatMap((record) => record.pets);
+console.log((petsDetails).filter((record) => record.likes.includes("Love lounging in the sun")).map((record) => record.name), "Q11");
 
-// const petsHavingSpecificActivities = petsDetails.filter((record) => record.petLikes.some((like => like === "Loves to play fetch in the park")));
-
-// console.log(petsHavingSpecificActivities.map((record) => record.petName).join(""));
-
-// ------------------------- 12 ------------------------------------------
+// ------------------------- 12 question ---------------------------------
 
 // 12. What are the names of all animals that belong to people who live in Bangalore or Chennai?
 
-// console.log(personsDetails.filter((record) => record.personal.nativePlace === "Chennai" || record.personal.nativePlace === "Bangalore").flatMap((record) => record.pets).map((record) => record.petName));
+console.log(people.filter((record) => ["Bangalore", "Chennai"].includes(record.nativePlace)).flatMap((record) => record.pets).map((record) => record.name), "Q12");
 
-// ------------------------- 13 ------------------------------------------
+// ------------------------- 13 question ---------------------------------
 
 // 13. How many vaccinated pets belong to people who do not own a car?
 
-// console.log(personsDetails.filter((record) => record.transport.hasAcar === "No").flatMap((record) => record.pets).map((record) => record.petName).length)
+console.log(people.filter((record) => !record.vehicles.includes("car")).
+  flatMap((record) => record.pets).length, "Q13");
 
-// ------------------------- 14 ------------------------------------------
-// const makePairs = function (pairs, element) {
-//   console.log(pairs, element);
-//   console.log(pairs.at(-1));
+// ------------------------- 14 question ---------------------------------
+const makeGroups = function (pairs, element) {
+  if (pairs.at(-1).some((type) => type !== element)) {
+    pairs.push([]);
+  }
 
-//   const lastAnimalType = pairs.at(-1);
-//   if (lastAnimalType.some((type) => type !== "cat")) {
-//     pairs.push([]);
-//   }
-
-//   pairs[pairs.length - 1].push(element);
-//   return pairs;
-// };
-
-// .some((value) => value === element)
+  pairs[pairs.length - 1].push(element);
+  return pairs;
+};
 
 // 14. What is the most common type of pet among the group?
 
-// console.log(personsDetails.flatMap((record) => record.pets).map((record) => record.typeOfPet).sort().reduce(makePairs, []))
+const groupedPets = people.flatMap((record) => record.pets).map((record) => record.type).sort().reduce(makeGroups, [[]]);
+
+console.log(groupedPets.reduce((group1, group2) => group1.length > group2.length ? group1 : group2, [])[0], "Q14");
+
+// ------------------------- 15 question ---------------------------------
+
+// 15. How many individuals have more than two hobbies?
+
+console.log(people.filter((record) => record.hobbies.length > 2).length, "Q15");
+
+// ------------------------- 16 question ---------------------------------
+
+// 16. How many individuals share at least one hobby with Ramesh
+
+const rameshHobbies = people.filter((record) => record.name === "Ramesh").flatMap((record) => record.hobbies).flatMap((record) => record.title);
+
 
 /* 
-15. How many individuals have more than two hobbies?
-16. How many individuals share at least one hobby with Ramesh?
 17. Which pet is the youngest, and what is its name?
 18. What types of books are mentioned as interests, and who reads them?
 19. How many individuals live in cities starting with the letter "B"?
