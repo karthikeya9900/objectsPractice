@@ -71,7 +71,7 @@ const people = [
       {
         type: "Parrot",
         name: "Kiwi",
-        age: 2,
+        age: 1,
         isVaccinated: true,
         likes: ["Mimics her voice"],
         skills: "Knows over 20 phrases",
@@ -303,7 +303,7 @@ console.log(
 
 // 15. How many individuals have more than two hobbies?
 
-// console.log(people.filter((record) => record.hobbies.length > 2).length, "Q15");
+console.log(people.filter((record) => record.hobbies.length > 2).length, "Q15");
 
 // ------------------------- 16 question ---------------------------------
 
@@ -317,12 +317,39 @@ const rameshHobbies = people
 console.log(
   people
     .filter((record) => record.name !== "Ramesh")
-    .map((record) => record.hobbies)
+    .flatMap((record) => record.hobbies)
+    .filter((record) => rameshHobbies.includes(record.title)).length,
+  "Q16"
 );
 
-/* 
-17. Which pet is the youngest, and what is its name?
-18. What types of books are mentioned as interests, and who reads them?
-19. How many individuals live in cities starting with the letter "B"?
-20. Which individuals do not own any pets?
-*/
+// ------------------------- 17 question ---------------------------------
+
+// 17. Which pet is the youngest, and what is its name?
+
+const youngestPet = petsDetails.reduce((initial, record) =>
+  record.age > initial.age ? initial : record
+);
+
+console.log(youngestPet.type, youngestPet.name);
+
+// ------------------------- 18 question ---------------------------------
+
+// 18. What types of books are mentioned as interests, and who reads them?
+
+// ------------------------- 19 question ---------------------------------
+
+// 19. How many individuals live in cities starting with the letter "B"?
+
+console.log(
+  people.filter((record) => record.nativePlace[0] === "B").length,
+  "Q19"
+);
+
+// ------------------------- 20 question ---------------------------------
+
+// 20. Which individuals do not own any pets?
+
+console.log(
+  people.filter((record) => record.pets.length === 0),
+  "Q20"
+);
