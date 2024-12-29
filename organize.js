@@ -121,10 +121,10 @@ const people = [
     age: 28,
     profession: "Professional dancer",
     qualification: "B Tech",
-    skills: [],
+    skills: [], // null
     nativePlace: "Chennai",
     isEmployed: false,
-    modeOfTransport: "not available",
+    modeOfTransport: "not available", // null
     hobbies: [
       {
         title: "Reading books",
@@ -135,14 +135,14 @@ const people = [
         description: "watching scientific fictions shows or movies",
       },
     ],
-    vehicles: [],
+    vehicles: [], // null
     pets: [
       {
         type: "Rabbit",
         name: "Snowy",
         age: 2,
         isVaccinated: true,
-        likes: ["Enjoys hopping around her backyard", " nibbling on carrots"],
+        likes: ["Enjoys hopping around her backyard", "nibbling on carrots"],
         skills: "not available",
       },
     ],
@@ -155,125 +155,166 @@ const people = [
 
 // 1. How many individuals are currently employed?  ----> 3 persons
 
-console.log(people.filter((person) => person.isEmployed).length, "Q1");
+const numberOfPersonsEmployed = (persons) =>
+  persons.filter((person) => person.isEmployed).length;
 
+// console.log(numberOfPersonsEmployed(people), "Q1");
 // -------------------------- 2 question ------------------------------
 
 // 2. How many people own a car?    ----> 1 person
 
-console.log(
-  people
-    .flatMap((person) => person.vehicles)
-    .filter((record) => record.type === "car").length,
-  "Q2"
-);
+const numberOfPeopleOwnVehicle = (persons, vehicle) =>
+  persons.filter(({ vehicles }) => vehicles.includes(vehicle)).length;
 
+// console.log(numberOfPeopleOwnVehicle(people, "car"), "Q2");
 // -------------------------- 3 question ------------------------------
 
 // 3. How many pets are fully vaccinated?    ----> 5 pets
-const petsDetails = people.flatMap((record) => record.pets);
-console.log(
-  petsDetails.filter((record) => record.isVaccinated === true).length,
-  "Q3"
-);
+
+const numberOfPetsFullyVaccinated = (persons) => {
+  const petsDetails = persons.flatMap(({ pets }) => pets);
+
+  return petsDetails.filter(({ isVaccinated }) => isVaccinated).length;
+};
+// console.log(numberOfPetsFullyVaccinated(people), "Q3");
 
 // ------------------------- 4 question ------------------------------------
 
 // 4. What are the names of all the pets, and what type of animal is each?  ----> Max is a dog, Kiwi is a parrot , Bella And Leo are Cats, Snowy is a Rabbit
 
-console.log(
-  petsDetails.map((record) => record.name + " is " + record.type),
-  "Q4"
-);
+const petsAndTypes = (persons) => {
+  const petsDetails = persons.flatMap(({ pets }) => pets);
+
+  return petsDetails.map(({ name, type }) => name + " is " + type);
+};
+
+// console.log(petsAndTypes(people), "Q4");
 
 // ------------------------- 5 question ----------------------------------
 
 // 5. Which cities do the individuals live in?   ---->
 
-console.log(
-  people.map((record) => record.nativePlace),
-  "Q5"
-);
+const citiesOf = (persons) => persons.map(({ nativePlace }) => nativePlace);
+
+// console.log(citiesOf(people), "Q5");
 
 // ------------------------- 6 question --------------------------------
 
 // 6. How many hobbies are shared across the group? What are they?
 // ---->
 
-console.log(people.flatMap((record) => record.hobbies).length, "Q6");
+const numberOfHobbies = (persons) =>
+  persons.flatMap(({ hobbies }) => hobbies).length;
+
+// console.log(numberOfHobbies(people), "Q6");
 
 // ------------------------- 7 question -----------------------------------
 
 // 7. How many pets belong to people who are currently unemployed?
 // ----> only one pet
-console.log(
-  people.filter((record) => !record.isEmployed).flatMap((record) => record.pets)
-    .length,
-  "Q7"
-);
+
+const countPetsOfUnemployed = (pesrons) =>
+  pesrons.filter(({ isEmployed }) => !isEmployed).flatMap(({ pets }) => pets)
+    .length;
+
+// console.log(countPetsOfUnemployed(people), "Q7");
 
 // ------------------------- 8 question -------------------------------
 
 // 8. What is the average age of the individuals mentioned in the passage?
 // ----> 35
 
-console.log(
-  people.reduce((sum, record) => record.age + sum, 0) / people.length,
-  "Q8"
-);
+const averageAgeOf = (persons) =>
+  persons.reduce((sum, { age }) => age + sum, 0) / persons.length;
+
+// console.log(averageAgeOf(people), "Q8");
 
 // ------------------------- 9 question ---------------------------------
 
-// 9. How many individuals have studied computer science, and how many of them have pets?
+// 9. How many individuals have studied computer science, and how many of them
+// have pets?
 
-console.log(
-  people
-    .filter((record) => record.qualification === "Computer Science")
-    .filter((record) => record.pets.length !== 0).length,
-  "Q9"
-);
+const peopleWithSpecificQualification = (persons, requiredQualification) => {
+  return persons.filter(
+    ({ qualification }) => qualification === requiredQualification
+  );
+};
+
+const peopleWithSpecificQualficationAndHavingPets = (
+  persons,
+  requiredQualification
+) => {
+  const peopleStudiedCS = peopleWithSpecificQualification(
+    persons,
+    requiredQualification
+  );
+
+  const peopleStudiedCSAndHavingPets = peopleStudiedCS.filter(
+    ({ pets }) => pets.length !== 0
+  );
+
+  return [
+    "people studied CS ",
+    peopleStudiedCS.length,
+    "people Studied CS and having Pets",
+    peopleStudiedCSAndHavingPets.length,
+  ];
+};
+
+// console.log(
+//   peopleWithSpecificQualficationAndHavingPets(people, "Computer Science"),
+//   "Q9"
+// );
 
 // ------------------------- 10 question --------------------------------
 
 // 10. How many individuals own more than one pet?
+const peopleHavingMoreThan1Pet = (persons) =>
+  persons.filter(({ pets }) => pets.length > 1).length;
 
-console.log(people.filter((record) => record.pets.length > 1).length, "Q10");
+// console.log(peopleHavingMoreThan1Pet(people), "Q10");
 
 // ------------------------- 11 question -------------------------------
 
 // 11. Which pets are associated with specific favorite activities?
 
-console.log(
-  petsDetails
-    .filter((record) => record.likes.includes("Love lounging in the sun"))
-    .map((record) => record.name),
-  "Q11"
-);
+const petsAssociatedWithSpecificActivities = (persons, activity) => {
+  const petsDetails = persons.flatMap(({ pets }) => pets);
+
+  return petsDetails.filter(({ likes }) => likes.includes(activity)).length;
+};
+
+// console.log(
+//   petsAssociatedWithSpecificActivities(people, "nibbling on carrots"),
+//   "Q11"
+// );
 
 // ------------------------- 12 question ---------------------------------
 
 // 12. What are the names of all animals that belong to people who live in Bangalore or Chennai?
 
-console.log(
-  people
-    .filter((record) => ["Bangalore", "Chennai"].includes(record.nativePlace))
-    .flatMap((record) => record.pets)
-    .map((record) => record.name),
-  "Q12"
-);
+const petsLivingInChennaiOrBengalore = (persons) => {
+  persons
+    .filter(({ nativePlace }) => ["Bangalore", "Chennai"].includes(nativePlace))
+    .flatMap(({ pets }) => pets)
+    .map(({ name }) => name);
+};
+
+// console.log(petsLivingInChennaiOrBengalore(people), "Q12");
 
 // ------------------------- 13 question ---------------------------------
 
 // 13. How many vaccinated pets belong to people who do not own a car?
 
-console.log(
-  people
-    .filter((record) => !record.vehicles.includes("car"))
-    .flatMap((record) => record.pets).length,
-  "Q13"
-);
+const petsOfPeopleNotHavingCar = (persons) =>
+  persons
+    .filter(({ vehicles }) => !vehicles.includes("car"))
+    .flatMap(({ pets }) => pets).length;
+
+// console.log(petsOfPeopleNotHavingCar(people), "Q13");
 
 // ------------------------- 14 question ---------------------------------
+
 const makeGroups = function (pairs, element) {
   if (pairs.at(-1).some((type) => type !== element)) {
     pairs.push([]);
@@ -291,46 +332,52 @@ const groupedPets = people
   .sort()
   .reduce(makeGroups, [[]]);
 
-console.log(
-  groupedPets.reduce(
-    (group1, group2) => (group1.length > group2.length ? group1 : group2),
-    []
-  )[0],
-  "Q14"
-);
+// console.log(
+//   groupedPets.reduce(
+//     (group1, group2) => (group1.length > group2.length ? group1 : group2),
+//     []
+//   )[0],
+//   "Q14"
+// );
 
 // ------------------------- 15 question ---------------------------------
 
 // 15. How many individuals have more than two hobbies?
 
-console.log(people.filter((record) => record.hobbies.length > 2).length, "Q15");
+// console.log(people.filter((record) => record.hobbies.length > 2).length, "Q15");
 
 // ------------------------- 16 question ---------------------------------
 
 // 16. How many individuals share at least one hobby with Ramesh
+const numberOfIndividualsShareAtLeastOneWithAPerson = (
+  persons,
+  targetPerson
+) => {
+  const rameshHobbies = people
+    .filter(({ name }) => name === "Ramesh")
+    .flatMap(({ hobbies }) => hobbies)
+    .flatMap(({ title }) => title);
 
-const rameshHobbies = people
-  .filter((record) => record.name === "Ramesh")
-  .flatMap((record) => record.hobbies)
-  .flatMap((record) => record.title);
+  console.log(rameshHobbies);
 
-console.log(
-  people
-    .filter((record) => record.name !== "Ramesh")
-    .flatMap((record) => record.hobbies)
-    .filter((record) => rameshHobbies.includes(record.title)).length,
-  "Q16"
-);
+  return rameshHobbies.filter({});
+};
 
 // ------------------------- 17 question ---------------------------------
 
 // 17. Which pet is the youngest, and what is its name?
 
-const youngestPet = petsDetails.reduce((initial, record) =>
-  record.age > initial.age ? initial : record
-);
+const youngestPetOf = (persons) => {
+  const petsDetails = persons.flatMap(({ pets }) => pets);
 
-console.log(youngestPet.type, youngestPet.name);
+  const youngPet = petsDetails.reduce((initial, record) =>
+    record.age > initial.age ? initial : record
+  );
+
+  return "name:" + youngPet.name + "    " + "type:" + youngPet.type;
+};
+
+// console.log(youngestPetOf(people), "Q17");
 
 // ------------------------- 18 question ---------------------------------
 
@@ -340,16 +387,67 @@ console.log(youngestPet.type, youngestPet.name);
 
 // 19. How many individuals live in cities starting with the letter "B"?
 
-console.log(
-  people.filter((record) => record.nativePlace[0] === "B").length,
-  "Q19"
-);
+const citiesStartWithB = (people) =>
+  people.filter((record) => record.nativePlace[0] === "B").length;
+
+// console.log(citiesStartWithB(people), "Q19");
 
 // ------------------------- 20 question ---------------------------------
 
 // 20. Which individuals do not own any pets?
 
-console.log(
-  people.filter((record) => record.pets.length === 0),
-  "Q20"
-);
+const peopleHavingNoPets = (persons) =>
+  persons.filter((record) => record.pets.length === 0);
+
+// console.log(peopleHavingNoPets(people), "Q20");
+
+//----------------------------------------------------------------------
+
+const testCases = () => {
+  const Q1 = numberOfPersonsEmployed(people);
+  const Q2 = numberOfPeopleOwnVehicle(people, "car");
+  const Q3 = numberOfPetsFullyVaccinated(people);
+  const Q4 = petsAndTypes(people);
+  const Q5 = citiesOf(people);
+  const Q6 = numberOfHobbies(people);
+  const Q7 = countPetsOfUnemployed(people);
+  const Q8 = averageAgeOf(people);
+  const Q9 = peopleWithSpecificQualficationAndHavingPets(
+    people,
+    "Computer Science"
+  );
+  const Q10 = peopleHavingMoreThan1Pet(people);
+  const Q11 = petsAssociatedWithSpecificActivities(
+    people,
+    "Loves to play fetch in the park"
+  );
+  const Q12 = petsLivingInChennaiOrBengalore(people);
+
+  console.log(
+    Q1,
+    "\n",
+    Q2,
+    "\n",
+    Q3,
+    "\n",
+    Q4,
+    "\n",
+    Q5,
+    "\n",
+    Q6,
+    "\n",
+    Q7,
+    "\n",
+    Q8,
+    "\n",
+    Q9,
+    "\n",
+    Q10,
+    "\n",
+    Q11,
+    "\n",
+    Q12
+  );
+};
+
+// testCases();
