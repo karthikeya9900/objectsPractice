@@ -349,19 +349,26 @@ const groupedPets = people
 // ------------------------- 16 question ---------------------------------
 
 // 16. How many individuals share at least one hobby with Ramesh
+
 const numberOfIndividualsShareAtLeastOneWithAPerson = (
   persons,
   targetPerson
 ) => {
-  const rameshHobbies = people
-    .filter(({ name }) => name === "Ramesh")
+  const personHobbies = persons
+    .filter(({ name }) => name === targetPerson)
     .flatMap(({ hobbies }) => hobbies)
     .flatMap(({ title }) => title);
 
-  console.log(rameshHobbies);
+  const HobbiesOfOtherPeople = people
+    .filter(({ name }) => name !== targetPerson)
+    .flatMap(({ hobbies }) => hobbies);
 
-  return rameshHobbies.filter({});
+  return HobbiesOfOtherPeople.filter(({ title }) =>
+    personHobbies.includes(title)
+  ).length;
 };
+
+console.log(numberOfIndividualsShareAtLeastOneWithAPerson(people, "Ramesh"));
 
 // ------------------------- 17 question ---------------------------------
 
